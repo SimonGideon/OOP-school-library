@@ -23,6 +23,7 @@ class Person
   end
   def can_use_services
     return unless @age < 18 || parent_permission
+
     true
   end
 end
