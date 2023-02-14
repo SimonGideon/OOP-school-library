@@ -1,14 +1,15 @@
 class Person
   def initialize(age, name = 'Unknown', parent_permission: true)
+    @id = Random.rand(1..100)
     @name = name
     @age = age
     @parent_permission = parent_permission
   end
 
   # Getters
-  attr_reader :name
+  attr_accessor :name
 
-  attr_reader :age
+  attr_accessor :age
 
   Private def of_age
     @age >= 18
