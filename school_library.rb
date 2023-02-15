@@ -13,11 +13,6 @@ class Person < Nameable
 
   attr_accessor :age
 
-  private
-  
-  def of_age
-    @age >= 18
-  end
   def can_use_services
     return unless @age >= 18 || parent_permission
 
@@ -26,6 +21,12 @@ class Person < Nameable
 
   def correct_name
     @name
+  end
+
+  private
+
+  def of_age
+    @age >= 18
   end
 end
 
@@ -38,18 +39,18 @@ class BaseDecorator < Nameable
   end
 
   def correct_name
-    nameable
+    @nameable
   end
 end
 
 class CapitalizeDecorator < BaseDecorator
   def correct_name
-    nameable.upcase!
+    @nameable.upcase!
   end
 end
 
 class TrimmerDecorator < BaseDecorator
   def correct_name
-    nameable[0..9]
+    @nameable.splice(0, 9)
   end
 end
