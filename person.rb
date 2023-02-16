@@ -1,7 +1,7 @@
 require './module/nameable'
 require './module/rental'
 class Person < Nameable
-  attr_accessor :name, :age, :rentals
+  attr_accessor :name, :age, :rentals, :book, :date
 
   def initialize(age, name = 'Unknown', parent_permission: true)
     super()
@@ -26,5 +26,9 @@ class Person < Nameable
 
   def of_age
     @age >= 18
+  end
+
+  def add_rental(book, date)
+    Rental.new(date, book, self)
   end
 end
