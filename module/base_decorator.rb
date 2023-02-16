@@ -1,4 +1,4 @@
-require '../school_library'
+require './person'
 require './module/nameable'
 class BaseDecorator < Nameable
   attr_accessor :nameable

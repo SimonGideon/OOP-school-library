@@ -1,11 +1,20 @@
-require '../school_library'
+require './person'
+require './module/classroom'
+
 class Student < Person
+  attr_accessor :classroom
+
   def initialize(name, age, parent_permission, classroom)
     super(name, age, parent_permission)
     @classroom = classroom
   end
 
-  def play_hooky()
+  def play_hooky
     '¯\(ツ)/¯'
+  end
+
+  def add_to_classroom(classroom)
+    @classroom = classroom
+    classroom.add_student(self) unless classroom.students.include?(self)
   end
 end
