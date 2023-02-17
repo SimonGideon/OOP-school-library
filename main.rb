@@ -22,21 +22,20 @@ def main
     when 3
       puts "Choose a person: Teacher(1), Student(2). Enter the number."
       op_person =  gets.chomp.to_i
+      my_app = App.new()
       case op_person
       when 1
-        puts 'Selected Teacher'
-
+        puts 'Enter Teachers Age: '
+        age = gets.chomp.to_i
+        puts 'Enter Teachers name: '
+        name = gets.chomp.to_s
+        my_person = my_app.create_person("Teacher", age, name)
       when 2
         puts 'Enter students age: '
         age = gets.chomp.to_i
         puts 'Enter students name: '
         name = gets.chomp.to_s
-        my_app = App.new()
         my_person = my_app.create_person("Student", age, name)
-        
-
-        
-        # name.create_person(Student)
       end
     when 4
         puts "You chose option 3"
