@@ -6,43 +6,55 @@ require './module/classroom'
 require './module/teacher'
 
 class App
+    attr_reader :people :books
+    def initialize()
+        @people = []
+        @books = []
+    end
     def list_books
         
     end
 
     def list_people
-
+        @people.each do |person|
+            case person
+                when Student
+                    puts "[Student] Name: #{person.name}, ID: #{person.id}, Age: #{person.age}"
+                when Teacher
+                    puts "[Teacher] Name: #{person.name}, ID: #{person.id}, Age: #{person.age}" 
+            end
+        end
     end
 
     def create_person(who, age, specialization=nil, name='Unkown')
         case who
         when "Student"
-            my_student = Student.new(name, age)
+            person = Student.new(age, name)
             puts "----------------------------------"
-            puts "Student:  Name:  #{my_student.name}"
-            puts "          Age:  #{my_student.age}"
-            puts "----------------------------------"
+            puts "Student:  Name:  #{person.name}"
+            puts "          Age:  #{person.age}"
+            puts "Student created succesfully"
         when 'Teacher'
-            my_teacher = Teacher.new(age, specialization, name)
+            person = Teacher.new(age, specialization, name)
             puts "----------------------------------"
-            puts "Teacher:  Name:  #{my_teacher.name}"
-            puts "          Age:  #{my_teacher.age}"
-            puts "          Specialization:  #{my_teacher.specialization}"
-            puts "----------------------------------"
-        else
-            return nil
+            puts "Teacher:  Name:  #{person.name}"
+            puts "          Age:  #{person.age}"
+            puts "          Specialization:  #{person.specialization}"
         end
+        @people << person
+        puts "person created succesfully"
     end
 
     def create_book(title, author)
         puts "----------------------------------"
-        my_reads = Book.new(title, author)
-        puts "Book: Title: #{my_reads.title}"
-        puts "      Author: #{my_reads.author}"
-        puts "----------------------------------"
+        book = Book.new(title, author)
+        puts "Book: Title: #{book.title}"
+        puts "      Author: #{book.author}"
+        puts "Book created succesfully"
+        @books<<book
     end
     def create_rental
-
+        
     end
     def list_rentals(id)
         
