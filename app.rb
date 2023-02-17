@@ -6,13 +6,15 @@ require './module/classroom'
 require './module/teacher'
 
 class App
-    attr_reader :people :books
+    attr_reader :people, :books
     def initialize()
         @people = []
         @books = []
     end
     def list_books
-        
+        @books.each do |book|
+            puts "Title: #{book.title},  Author: #{book.author}"
+        end        
     end
 
     def list_people
@@ -50,8 +52,8 @@ class App
         book = Book.new(title, author)
         puts "Book: Title: #{book.title}"
         puts "      Author: #{book.author}"
-        puts "Book created succesfully"
         @books<<book
+        puts "Book created succesfully"
     end
     def create_rental
         

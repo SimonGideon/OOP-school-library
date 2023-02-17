@@ -19,7 +19,7 @@ class Main
       option = gets.chomp.to_i
       case option
       when 1
-        puts "You chose option 1"
+        @my_app.list_books
       when 2
         @my_app.list_people
       when 3
