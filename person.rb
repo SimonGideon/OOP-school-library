@@ -2,8 +2,7 @@ require './module/nameable'
 require './module/rental'
 class Person < Nameable
   attr_accessor :name, :age, :rentals, :book, :date
-
-  def initialize(age, name = 'Unknown', parent_permission: true)
+  def initialize(age, name = 'Unknown', parent_permission = true)
     super()
     @id = Random.rand(1..100)
     @name = name
@@ -13,7 +12,7 @@ class Person < Nameable
   end
 
   def can_use_services
-    return unless @age >= 18 || parent_permission
+    return unless @age >= 18 || @parent_permission
 
     true
   end

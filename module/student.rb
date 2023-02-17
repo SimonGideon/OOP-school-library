@@ -2,9 +2,9 @@ require './person'
 require './module/classroom'
 
 class Student < Person
-  attr_accessor :classroom
+  attr_reader :classroom
 
-  def initialize(name, age, parent_permission, classroom)
+  def initialize(classroom ,age, name='Unkown', parent_permission=true)
     super(name, age, parent_permission)
     @classroom = classroom
   end
@@ -15,6 +15,6 @@ class Student < Person
 
   def add_to_classroom(classroom)
     @classroom = classroom
-    classroom.add_student(self) unless classroom.students.include?(self)
+    classroom.students.push(self) unless classroom.students.include?(self)
   end
 end
