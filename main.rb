@@ -29,7 +29,9 @@ def main
         age = gets.chomp.to_i
         puts 'Enter Teachers name: '
         name = gets.chomp.to_s
-        my_person = my_app.create_person("Teacher", age, name)
+        puts 'Enter Specialization: '
+        specialization = gets.chomp.to_s
+        my_person = my_app.create_person("Teacher", age, specialization, name)
       when 2
         puts 'Enter students age: '
         age = gets.chomp.to_i

@@ -14,7 +14,7 @@ class App
 
     end
 
-    def create_person(who, age, name, specialization=nil)
+    def create_person(who, age, specialization=nil, name='Unkown')
         case who
         when "Student"
             my_student = Student.new(name, age)
@@ -23,10 +23,11 @@ class App
             puts "          Age:  #{my_student.age}"
             puts "----------------------------------"
         when 'Teacher'
-            my_teacher = Teacher.new(age, name)
+            my_teacher = Teacher.new(age, specialization, name)
             puts "----------------------------------"
             puts "Teacher:  Name:  #{my_teacher.name}"
             puts "          Age:  #{my_teacher.age}"
+            puts "          Specialization:  #{my_teacher.specialization}"
             puts "----------------------------------"
         else
             return nil
