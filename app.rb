@@ -34,8 +34,12 @@ class App
         end
     end
 
-    def create_book
-
+    def create_book(title, author)
+        puts "----------------------------------"
+        my_reads = Book.new(title, author)
+        puts "Book: Title: #{my_reads.title}"
+        puts "      Author: #{my_reads.author}"
+        puts "----------------------------------"
     end
     def create_rental
 

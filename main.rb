@@ -13,7 +13,7 @@ def main
     puts "7 - Exit"
     
     option = gets.chomp.to_i
-    
+    my_app = App.new()
     case option
     when 1
       puts "You chose option 1"
@@ -22,7 +22,6 @@ def main
     when 3
       puts "Choose a person: Teacher(1), Student(2). Enter the number."
       op_person =  gets.chomp.to_i
-      my_app = App.new()
       case op_person
       when 1
         puts 'Enter Teachers Age: '
@@ -40,7 +39,11 @@ def main
         my_person = my_app.create_person("Student", age, name)
       end
     when 4
-        puts "You chose option 3"
+        puts "Title: "
+        title = gets.chomp.to_s
+        puts "Author: "
+        author = gets.chomp.to_s
+        my_reads = my_app.create_book(title, author)
     when 5
         puts "You chose option 3"
     when 6
