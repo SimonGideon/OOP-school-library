@@ -24,14 +24,15 @@ class App
     @people.each do |person|
       case person
       when Student
-        puts "[Student] Name: #{person.name}, ID: #{person.id}, Age: #{person.age}, Parent Person: #{person.parent_permission}"
+        puts "[Student] Name: #{person.name}, ID: #{person.id}, Age: #{person.age},
+         Parent Person: #{person.parent_permission}"
       when Teacher
         puts "[Teacher] Name: #{person.name}, ID: #{person.id}, Age: #{person.age}"
       end
     end
   end
 
-  def create_person(who, age, name, specialization = nil, parent_permission)
+  def create_person(who, age, name, parent_permission, specialization = nil)
     case who
     when 'Student'
       person = Student.new(age, name, parent_permission)
