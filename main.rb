@@ -61,6 +61,18 @@ class Main
     end
   end
 
+  def get_parent_permission
+    puts "Has parent Permission? [Y/N]: "
+    input = gets.chomp.downcase
+    if input == 'n'
+      false
+    elsif input == 'y'
+      true
+    else
+      puts "Invalid input"
+    end
+  end
+
   def create_teacher
     puts 'Enter Teachers Age: '
     age = gets.chomp.to_i
@@ -68,7 +80,8 @@ class Main
     name = gets.chomp.to_s
     puts 'Enter Specialization: '
     specialization = gets.chomp.to_s
-    @my_app.create_person('Teacher', age, name, specialization)
+    parent_permission = get_parent_permission
+    @my_app.create_person('Teacher', age, name, specialization, parent_permission)
   end
 
   def create_student
@@ -76,7 +89,8 @@ class Main
     age = gets.chomp.to_i
     puts 'Enter students name: '
     name = gets.chomp.to_s
-    @my_app.create_person('Student', age, name)
+    parent_permission = get_parent_permission
+    @my_app.create_person('Student', age, name, parent_permission)
   end
 
   def handle_create_book
