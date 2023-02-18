@@ -4,11 +4,13 @@ require './module/classroom'
 class Student < Person
   attr_accessor :classroom
 
-  def initialize(age, name='Unkown', parent_permission=true)
+  # rubocop:disable Style/OptionalBooleanParameter
+  def initialize(age, name = 'Unkown', parent_permission = true)
     super(age, name, parent_permission)
     @classroom = classroom
   end
 
+  # rubocop:enable Style/OptionalBooleanParameter
   def play_hooky
     '¯\(ツ)/¯'
   end
