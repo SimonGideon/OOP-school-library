@@ -40,10 +40,10 @@ class App
       puts "          Age:  #{person.age}"
       puts 'Student created succesfully'
     when 'Teacher'
-      person = Teacher.new(age, name, specialization)
+      person = Teacher.new(name, age, specialization)
       puts '----------------------------------'
-      puts "Teacher:  Name:  #{person.age}"
-      puts "          Age:  #{person.name}"
+      puts "Teacher:  Name:  #{person.name}"
+      puts "          Age:  #{person.age}"
       puts "          Specialization:  #{person.specialization}"
     end
     @people << person

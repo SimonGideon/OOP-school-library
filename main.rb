@@ -49,12 +49,12 @@ class Main
   end
 
   def handle_create_person
-    puts 'Choose a person: Teacher(1), Student(2). Enter the number.'
+    puts 'Choose a person: Student(1), Teacher(2). Enter the number.'
     op_person = gets.chomp.to_i
     case op_person
-    when 1
-      create_teacher
     when 2
+      create_teacher
+    when 1
       create_student
     else
       puts 'Invalid option'

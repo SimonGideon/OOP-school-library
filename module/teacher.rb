@@ -3,7 +3,7 @@ class Teacher < Person
   attr_accessor :specialization
 
   # rubocop:disable Style/OptionalBooleanParameter
-  def initialize(age, name, specialization, parent_permission = true)
+  def initialize(age, name='Unkown', specialization=nil, parent_permission = true)
     super(name, age, parent_permission)
     @specialization = specialization
   end
