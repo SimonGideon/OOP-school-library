@@ -2,9 +2,13 @@
 require './app'
 require 'date'
 
+# base class
 class Main
   def initialize()
     @my_app = App.new
+    @person_handler = PersonHandler.new(@my_app)
+    @rentals_handler = Rentals.new(@my_app)
+    @books_handler = BooksHandler.new(@my_app)
   end
 
   def run
@@ -36,16 +40,23 @@ class Main
     when 2
       @my_app.list_people
     when 3
-      handle_create_person
+      @person_handler.handle_create_person
     when 4
-      handle_create_book
+      @books_handler.handle_create_book
     when 5
-      handle_create_rental
+      @rentals_handler.handle_create_rental
     when 6
-      handle_list_rentals
+      @rentals_handler.handle_list_rentals
     else
       puts 'Invalid option'
     end
+  end
+end
+
+# person handler
+class PersonHandler
+  def initialize(app)
+    @my_app = app
   end
 
   def handle_create_person
@@ -60,6 +71,8 @@ class Main
       puts 'Invalid option'
     end
   end
+
+  private
 
   def loo_permission
     puts 'Has parent Permission? [Y/N]: '
@@ -93,13 +106,12 @@ class Main
     parent_permission = loo_permission
     @my_app.create_person('Student', age, name, parent_permission)
   end
+end
 
-  def handle_create_book
-    puts 'Title: '
-    title = gets.chomp.to_s
-    puts 'Author: '
-    author = gets.chomp.to_s
-    @my_app.create_book(title, author)
+# rentals class
+class Rentals
+  def initialize(app)
+    @my_app = app
   end
 
   def handle_create_rental
@@ -119,6 +131,21 @@ class Main
     print 'ID of person: '
     person_id = gets.chomp.to_i
     @my_app.list_rentals(person_id)
+  end
+end
+
+# book handler
+class BooksHandler
+  def initialize(app)
+    @my_app = app
+  end
+
+  def handle_create_book
+    puts 'Title: '
+    title = gets.chomp.to_s
+    puts 'Author: '
+    author = gets.chomp.to_s
+    @my_app.create_book(title, author)
   end
 end
 
