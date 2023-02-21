@@ -2,9 +2,13 @@
 require './app'
 require 'date'
 
+# base class
 class Main
   def initialize()
     @my_app = App.new
+    @person_handler = PersonHandler.new(@my_app)
+    @rentals_handler = Rentals.new(@my_app)
+    @books_handler = BooksHandler.new(@my_app)
   end
 
   def run
@@ -36,89 +40,16 @@ class Main
     when 2
       @my_app.list_people
     when 3
-      handle_create_person
+      @person_handler.handle_create_person
     when 4
-      handle_create_book
+      @books_handler.handle_create_book
     when 5
-      handle_create_rental
+      @rentals_handler.handle_create_rental
     when 6
-      handle_list_rentals
+      @rentals_handler.handle_list_rentals
     else
       puts 'Invalid option'
     end
-  end
-
-  def handle_create_person
-    puts 'Choose a person: Student(1), Teacher(2). Enter the number.'
-    op_person = gets.chomp.to_i
-    case op_person
-    when 2
-      create_teacher
-    when 1
-      create_student
-    else
-      puts 'Invalid option'
-    end
-  end
-
-  def loo_permission
-    puts 'Has parent Permission? [Y/N]: '
-    input = gets.chomp.downcase
-    case input
-    when 'n'
-      false
-    when 'y'
-      true
-    else
-      puts 'Invalid input'
-    end
-  end
-
-  def create_teacher
-    puts 'Enter Teachers Age: '
-    age = gets.chomp.to_i
-    puts 'Enter Teachers name: '
-    name = gets.chomp.to_s
-    puts 'Enter Specialization: '
-    specialization = gets.chomp.to_s
-    parent_permission = loo_permission
-    @my_app.create_person('Teacher', age, name, specialization, parent_permission)
-  end
-
-  def create_student
-    puts 'Enter students age: '
-    age = gets.chomp.to_i
-    puts 'Enter students name: '
-    name = gets.chomp.to_s
-    parent_permission = loo_permission
-    @my_app.create_person('Student', age, name, parent_permission)
-  end
-
-  def handle_create_book
-    puts 'Title: '
-    title = gets.chomp.to_s
-    puts 'Author: '
-    author = gets.chomp.to_s
-    @my_app.create_book(title, author)
-  end
-
-  def handle_create_rental
-    @my_app.gets_book
-    @my_app.gets_person
-    puts 'Enter book index:'
-    book_index = gets.chomp.to_i
-    puts 'Enter person Index:'
-    person_index = gets.chomp.to_i
-    puts 'Enter date(YYYY-MM-DD): '
-    date_input = gets.chomp
-    date = Date.parse(date_input)
-    @my_app.create_rental(book_index, person_index, date)
-  end
-
-  def handle_list_rentals
-    print 'ID of person: '
-    person_id = gets.chomp.to_i
-    @my_app.list_rentals(person_id)
   end
 end
 
