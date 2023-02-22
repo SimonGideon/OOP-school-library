@@ -95,8 +95,16 @@ class App
     end
   end
   def save
-    File.open('./module/people.json', 'w') do |file|
-      file.write(JSON.pretty_generate(@people.map(&:to_hash)))
+    opts = {
+      array_nl: "\n",
+      object_nl: "\n",
+      indent: '  ',
+      space_before: ' ',
+      space: ' '
+    }
+    
+    File.open('./module/people.json', 'a') do |file|
+      file.write(JSON.pretty_generate(@people.map(&:to_hash), opts))
     end
   end
 
