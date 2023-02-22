@@ -94,6 +94,11 @@ class App
       end
     end
   end
+  def save
+    File.open('./module/people.json', 'w') do |file|
+      file.write(JSON.pretty_generate(@people.map(&:to_hash)))
+    end
+  end
 
 end
 
