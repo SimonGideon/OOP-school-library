@@ -15,6 +15,13 @@ class App
     @rentals = []
   end
 
+  # load data
+  def load_data
+    @people = read_json_file('./module/people.json', Person)
+    @books = read_json_file('./module/books.json', Book)
+    @rentals = read_json_file('./module/rentals.json', Rental)
+  end
+
   def list_books
     @books.each do |book|
       puts "Title: #{book.title},  Author: #{book.author}"
@@ -94,7 +101,28 @@ class App
       end
     end
   end
+
+  def save_data
+    all_data = [@people, @books, @rentals]
+    file_paths = ['./module/people.json', './module/books.json', './module/rentals.json']
+
+    # Iterate on both arrays
+    all_data.zip(file_paths).each do |data, file_path|
+      saver = JsonHandler.new(data, file_path)
+      saver.save
+    end
+  end
+end
+
+# Create a new instance of JsonHandler to handle all the data
+class JsonHandler
+  def initialize(data, file_path)
+    @data = data
+    @file_path = file_path
+  end
+
   def save
+    # format the data
     opts = {
       array_nl: "\n",
       object_nl: "\n",
@@ -102,12 +130,11 @@ class App
       space_before: ' ',
       space: ' '
     }
-    
-    File.open('./module/people.json', 'a') do |file|
-      file.write(JSON.pretty_generate(@people.map(&:to_hash), opts))
+    # creates the files if doesnt exits and writes on them.
+    File.open(@file_path, 'a') do |file|
+      file.write(JSON.pretty_generate(@data.map(&:to_hash), opts))
     end
   end
-
 end
 
 # person handler

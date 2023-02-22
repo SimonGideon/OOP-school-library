@@ -18,7 +18,7 @@ class Main
       option = gets.chomp.to_i
       handle_option(option)
       if option == 7
-        @my_app.save
+        @my_app.save_data
         break
       else
         puts 'Invalid option'
