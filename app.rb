@@ -4,6 +4,7 @@ require './person'
 require './module/student'
 require './module/classroom'
 require './module/teacher'
+require 'json'
 
 class App
   attr_reader :people, :books, :rentals
@@ -93,6 +94,7 @@ class App
       end
     end
   end
+
 end
 
 # person handler
