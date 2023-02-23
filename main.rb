@@ -17,7 +17,12 @@ class Main
       display_options
       option = gets.chomp.to_i
       handle_option(option)
-      break if option == 7
+      if option == 7
+        @my_app.save_data
+        break
+      else
+        puts 'Invalid option'
+      end
     end
     puts 'Exiting......'
   end
@@ -47,8 +52,6 @@ class Main
       @rentals_handler.handle_create_rental
     when 6
       @rentals_handler.handle_list_rentals
-    else
-      puts 'Invalid option'
     end
   end
 end
