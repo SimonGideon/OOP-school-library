@@ -13,6 +13,7 @@ class App
     @people = []
     @books = []
     @rentals = []
+    load_data
   end
 
   # load data
