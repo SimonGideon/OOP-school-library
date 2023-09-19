@@ -61,7 +61,7 @@ class App
     end
   end
 
-  def create_person(who, age, name, parent_permission, specialization = nil)
+  def create_person(who, age, name, specialization = nil, parent_permission = true)
     case who
     when "Student"
       person = Student.new(age, name, parent_permission)
@@ -151,8 +151,9 @@ class JsonHandler
       space_before: " ",
       space: " ",
     }
+
     # creates the files if doesnt exits and writes on them.
-    File.open(@file_path, "a") do |file|
+    File.open(@file_path, "w") do |file|
       file.write(JSON.pretty_generate(@data.map(&:to_hash), opts))
     end
   end
