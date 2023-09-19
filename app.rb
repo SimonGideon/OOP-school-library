@@ -20,7 +20,13 @@ class App
   def load_data
     people_data = File.read("./module/people.json")
     books_data = File.read("./module/books.json")
-    rentals = File.read("./module/rentals.json")
+    rentals_data = File.read("./module/rentals.json")
+
+    # Check if the JSON data is empty
+    if people_data.empty? || books_data.empty? || rentals_data.empty?
+      puts "One or more JSON files are empty. Unable to load data."
+      return
+    end
 
     @people = JSON.parse(people_data).map do |person|
       if person.key?("specialization")
@@ -32,7 +38,7 @@ class App
     @books = JSON.parse(books_data).map do |book|
       Book.new(book["title"], book["author"], book["id"])
     end
-    @rentals = JSON.parse(rentals).map do |rental|
+    @rentals = JSON.parse(rentals_data).map do |rental|
       Rental.new(rental["date"], rental["book"], rental["person"], rental["id"])
     end
   end
