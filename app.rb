@@ -1,10 +1,10 @@
-require './module/rental'
-require './module/book'
-require './person'
-require './module/student'
-require './module/classroom'
-require './module/teacher'
-require 'json'
+require "./module/rental"
+require "./module/book"
+require "./person"
+require "./module/student"
+require "./module/classroom"
+require "./module/teacher"
+require "json"
 
 class App
   attr_reader :people, :books, :rentals
@@ -18,9 +18,23 @@ class App
 
   # load data
   def load_data
-    @people = read_json_file('./module/people.json', Person)
-    @books = read_json_file('./module/books.json', Book)
-    @rentals = read_json_file('./module/rentals.json', Rental)
+    people_data = File.read("./module/people.json")
+    books_data = File.read("./module/books.json")
+    rentals = File.read("./module/rentals.json")
+
+    @people = JSON.parse(people_data).map do |person|
+      if person.key?("specialization")
+        Teacher.new(person["name"], person["age"], person["specialization"], person["parent_permission"], person["id"])
+      else
+        Student.new(person["age"], person["name"], person["parent_permission"], person["id"])
+      end
+    end
+    @books = JSON.parse(books_data).map do |book|
+      Book.new(book["title"], book["author"], book["id"])
+    end
+    @rentals = JSON.parse(rentals).map do |rental|
+      Rental.new(rental["date"], rental["book"], rental["person"], rental["id"])
+    end
   end
 
   def list_books
@@ -43,32 +57,32 @@ class App
 
   def create_person(who, age, name, parent_permission, specialization = nil)
     case who
-    when 'Student'
+    when "Student"
       person = Student.new(age, name, parent_permission)
-      puts '----------------------------------'
+      puts "----------------------------------"
       puts "Student:  Name:  #{person.name}"
       puts "          Age:  #{person.age}"
       puts "          Parent Permission: #{person.parent_permission}"
-      puts 'Student created succesfully'
-    when 'Teacher'
+      puts "Student created succesfully"
+    when "Teacher"
       person = Teacher.new(name, age, specialization, parent_permission)
-      puts '----------------------------------'
+      puts "----------------------------------"
       puts "Teacher:  Name:  #{person.name}"
       puts "          Age:  #{person.age}"
       puts "          Specialization:  #{person.specialization}"
       puts "          Parent Permission:  #{person.parent_permission}"
     end
     @people << person
-    puts 'person created succesfully'
+    puts "person created succesfully"
   end
 
   def create_book(title, author)
-    puts '----------------------------------'
+    puts "----------------------------------"
     book = Book.new(title, author)
     puts "Book: Title: #{book.title}"
     puts "      Author: #{book.author}"
     @books << book
-    puts 'Book created succesfully'
+    puts "Book created succesfully"
   end
 
   def create_rental(book_index, person_index, d_date)
@@ -76,11 +90,11 @@ class App
     person = @people[person_index]
     date = d_date
     @rentals << Rental.new(date, book, person)
-    puts 'Rental Created.'
+    puts "Rental Created."
   end
 
   def list_rentals(_id)
-    puts 'Rentals:'
+    puts "Rentals:"
     @rentals.each do |rental|
       if rental.person.id == person_id
         puts "Date: #{rental.date}, Book '#{rental.book.title}' By #{rental.person.name} "
@@ -105,7 +119,7 @@ class App
 
   def save_data
     all_data = [@people, @books, @rentals]
-    file_paths = ['./module/people.json', './module/books.json', './module/rentals.json']
+    file_paths = ["./module/people.json", "./module/books.json", "./module/rentals.json"]
 
     # Iterate on both arrays
     all_data.zip(file_paths).each do |data, file_path|
@@ -127,12 +141,12 @@ class JsonHandler
     opts = {
       array_nl: "\n",
       object_nl: "\n",
-      indent: '  ',
-      space_before: ' ',
-      space: ' '
+      indent: "  ",
+      space_before: " ",
+      space: " ",
     }
     # creates the files if doesnt exits and writes on them.
-    File.open(@file_path, 'a') do |file|
+    File.open(@file_path, "a") do |file|
       file.write(JSON.pretty_generate(@data.map(&:to_hash), opts))
     end
   end
@@ -145,7 +159,7 @@ class PersonHandler
   end
 
   def handle_create_person
-    puts 'Choose a person: Student(1), Teacher(2). Enter the number.'
+    puts "Choose a person: Student(1), Teacher(2). Enter the number."
     op_person = gets.chomp.to_i
     case op_person
     when 2
@@ -153,43 +167,43 @@ class PersonHandler
     when 1
       create_student
     else
-      puts 'Invalid option'
+      puts "Invalid option"
     end
   end
 
   private
 
   def loo_permission
-    puts 'Has parent Permission? [Y/N]: '
+    puts "Has parent Permission? [Y/N]: "
     input = gets.chomp.downcase
     case input
-    when 'n'
+    when "n"
       false
-    when 'y'
+    when "y"
       true
     else
-      puts 'Invalid input'
+      puts "Invalid input"
     end
   end
 
   def create_teacher
-    puts 'Enter Teachers Age: '
+    puts "Enter Teachers Age: "
     age = gets.chomp.to_i
-    puts 'Enter Teachers name: '
+    puts "Enter Teachers name: "
     name = gets.chomp.to_s
-    puts 'Enter Specialization: '
+    puts "Enter Specialization: "
     specialization = gets.chomp.to_s
     parent_permission = loo_permission
-    @my_app.create_person('Teacher', age, name, specialization, parent_permission)
+    @my_app.create_person("Teacher", age, name, specialization, parent_permission)
   end
 
   def create_student
-    puts 'Enter students age: '
+    puts "Enter students age: "
     age = gets.chomp.to_i
-    puts 'Enter students name: '
+    puts "Enter students name: "
     name = gets.chomp.to_s
     parent_permission = loo_permission
-    @my_app.create_person('Student', age, name, parent_permission)
+    @my_app.create_person("Student", age, name, parent_permission)
   end
 end
 
@@ -202,18 +216,18 @@ class Rentals
   def handle_create_rental
     @my_app.gets_book
     @my_app.gets_person
-    puts 'Enter book index:'
+    puts "Enter book index:"
     book_index = gets.chomp.to_i
-    puts 'Enter person Index:'
+    puts "Enter person Index:"
     person_index = gets.chomp.to_i
-    puts 'Enter date(YYYY-MM-DD): '
+    puts "Enter date(YYYY-MM-DD): "
     date_input = gets.chomp
     date = Date.parse(date_input)
     @my_app.create_rental(book_index, person_index, date)
   end
 
   def handle_list_rentals
-    print 'ID of person: '
+    print "ID of person: "
     person_id = gets.chomp.to_i
     @my_app.list_rentals(person_id)
   end
@@ -226,9 +240,9 @@ class BooksHandler
   end
 
   def handle_create_book
-    puts 'Title: '
+    puts "Title: "
     title = gets.chomp.to_s
-    puts 'Author: '
+    puts "Author: "
     author = gets.chomp.to_s
     @my_app.create_book(title, author)
   end
