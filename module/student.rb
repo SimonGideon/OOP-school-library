@@ -1,13 +1,13 @@
-require './person'
-require './module/classroom'
+require "./person"
+require "./module/classroom"
 
 class Student < Person
   attr_accessor :classroom
   attr_reader :parent_permission
 
   # rubocop:disable Style/OptionalBooleanParameter
-  def initialize(age, name = 'Unkown', parent_permission = true)
-    super(age, name, parent_permission)
+  def initialize(age, name = "Unkown", parent_permission = true, id = nil)
+    super(age, name, parent_permission, id)
     @classroom = classroom
   end
 
@@ -26,7 +26,7 @@ class Student < Person
       id: id,
       age: age,
       name: name,
-      parent_permission: parent_permission
+      parent_permission: parent_permission,
     }
   end
 end
