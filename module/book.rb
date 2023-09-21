@@ -1,8 +1,11 @@
-require './module/rental'
-class Book
-  attr_accessor :title, :author, :rentals
+require "./module/rental"
 
-  def initialize(title, author)
+class Book
+  attr_accessor :title, :author, :rental
+  attr_reader :id
+
+  def initialize(title, author, id = nil)
+    @id = Random.rand(1..100)
     @title = title
     @author = author
     @rentals = []
@@ -15,8 +18,9 @@ class Book
   # hashing
   def to_hash
     {
+      id: id,
       title: title,
-      author: author
+      author: author,
     }
   end
 end

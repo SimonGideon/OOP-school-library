@@ -45,7 +45,7 @@ class App
 
   def list_books
     @books.each do |book|
-      puts "Title: #{book.title},  Author: #{book.author}"
+      puts "Index: #{book.id}, Title: #{book.title},  Author: #{book.author}"
     end
   end
 
@@ -89,6 +89,7 @@ class App
     puts "      Author: #{book.author}"
     @books << book
     puts "Book created succesfully"
+    puts @books[0].title
   end
 
   def create_rental(book_index, person_index, d_date)

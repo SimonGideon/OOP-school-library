@@ -1,11 +1,11 @@
-require './module/book'
-require './person'
+require "./module/book"
+require "./person"
 
 class Rental
   attr_accessor :date
   attr_reader :book, :person
 
-  def initialize(date, _book, _person)
+  def initialize(date, _book, _person, id = nil)
     @date = date
   end
 
@@ -21,9 +21,10 @@ class Rental
 
   def to_hash
     {
+      id: id,
       date: date,
       book: book,
-      person: person
+      person: person,
     }
   end
 end

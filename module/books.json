@@ -1,3 +1,67 @@
 [
-
+  {
+    "id" : 60,
+    "title" : "Ruthie",
+    "author" : "Mikie"
+  },
+  {
+    "id" : 43,
+    "title" : "Lucky Kids",
+    "author" : "Miagy"
+  },
+  {
+    "id" : 35,
+    "title" : "River and The source",
+    "author" : "Margeret Ogolla"
+  },
+  {
+    "id" : 27,
+    "title" : "Advance Programming",
+    "author" : "Martn Cartel"
+  },
+  {
+    "id" : 13,
+    "title" : "Waziri wa mayai",
+    "author" : "Mbue"
+  },
+  {
+    "id" : 85,
+    "title" : "Calculus II",
+    "author" : "Dr. Mtua"
+  },
+  {
+    "id" : 58,
+    "title" : "Teakwondo",
+    "author" : "Master Lee"
+  },
+  {
+    "id" : 55,
+    "title" : "t",
+    "author" : "y"
+  },
+  {
+    "id" : 41,
+    "title" : "Return of the Eagle",
+    "author" : "Twist"
+  },
+  {
+    "id" : 24,
+    "title" : "Ruthless King",
+    "author" : "Puttin"
+  },
+  {
+    "id" : 10,
+    "title" : "Ellon",
+    "author" : "Kister"
+  },
+  {
+    "id" : 59,
+    "title" : "t",
+    "author" : "t"
+  },
+  {
+    "id" : 57,
+    "title" : "Elly",
+    "author" : "Duke"
+  }
 ]
