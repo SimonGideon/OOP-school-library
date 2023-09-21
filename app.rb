@@ -5,6 +5,8 @@ require "./module/student"
 require "./module/classroom"
 require "./module/teacher"
 require "json"
+require "./module/assets/intro_txt"
+require "date"
 
 class App
   attr_reader :people, :books, :rentals
@@ -53,12 +55,19 @@ class App
 
   def list_books
     @books.each do |book|
-      puts "Index: #{book.id}, Title: #{book.title},  Author: #{book.author}"
+      below
+      puts " Books:"
+      mid
+      puts "* Book ID: #{book.id}, Title: #{book.title},  Author: #{book.author}"
+      below
     end
   end
 
   def list_people
     @people.each do |person|
+      below
+      puts " List of people:"
+      mid
       case person
       when Student
         puts "[Student] Name: #{person.name}, ID: #{person.id}, Age: #{person.age},
@@ -66,6 +75,7 @@ class App
       when Teacher
         puts "[Teacher] Name: #{person.name}, ID: #{person.id}, Age: #{person.age}"
       end
+      below
     end
   end
 
@@ -73,14 +83,14 @@ class App
     case who
     when "Student"
       person = Student.new(age, name, parent_permission)
-      puts "----------------------------------"
+      mid
       puts "Student:  Name:  #{person.name}"
       puts "          Age:  #{person.age}"
       puts "          Parent Permission: #{person.parent_permission}"
       puts "Student created succesfully"
     when "Teacher"
       person = Teacher.new(name, age, specialization, parent_permission)
-      puts "----------------------------------"
+      mid
       puts "Teacher:  Name:  #{person.name}"
       puts "          Age:  #{person.age}"
       puts "          Specialization:  #{person.specialization}"
@@ -91,7 +101,7 @@ class App
   end
 
   def create_book(title, author)
-    puts "----------------------------------"
+    mid
     book = Book.new(title, author)
     puts "Book: Title: #{book.title}"
     puts "      Author: #{book.author}"
@@ -119,25 +129,34 @@ class App
   end
 
   def list_rentals(_id)
+    below
     puts "Rentals:"
+    mid
     @rentals.each do |rental|
       if rental.person.id == _id
         puts "Date: #{rental.date}, Book '#{rental.book.title}' By #{rental.person.name} "
+        below
       end
     end
   end
 
   def gets_book()
-    @books.each_with_index { |book, index| puts "#{index} Title: #{book.title}, Author: #{book.author}" }
+    puts "Books"
+    mid
+    @books.each_with_index { |book, index| puts "*.) Title: #{book.title}, Author: #{book.author}" }
   end
 
   def gets_person()
     @people.each_with_index do |person, index|
       case person
       when Student
-        puts "#{index}.) [Student] Name: #{person.name}, ID: #{person.id}, Age: #{person.age}"
+        puts " List of students:"
+        pmid
+        puts "* [Student] Name: #{person.name}, ID: #{person.id}, Age: #{person.age}"
       when Teacher
-        puts "#{index}.) [Teacher] Name: #{person.name}, ID: #{person.id}, Age: #{person.age}"
+        puts " List of teachers:"
+        mid
+        puts "* [Teacher] Name: #{person.name}, ID: #{person.id}, Age: #{person.age}"
       end
     end
   end
