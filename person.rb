@@ -1,4 +1,5 @@
 require "./module/nameable"
+require "./module/common"
 require "./module/rental"
 
 class Person < Nameable
@@ -8,7 +9,7 @@ class Person < Nameable
   # rubocop:disable Style/OptionalBooleanParameter
   def initialize(age, name = "Unknown", parent_permission = true, id = nil)
     super()
-    @id = Random.rand(1..100)
+    @id = Common.next_id
     @name = name
     @age = age
     @parent_permission = parent_permission

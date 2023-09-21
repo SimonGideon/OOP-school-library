@@ -7,6 +7,7 @@ class Rental
 
   def initialize(date, _book, _person, id = nil)
     @date = date
+    @id = Common.next_id
   end
 
   def book=(book)

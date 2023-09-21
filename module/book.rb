@@ -1,3 +1,4 @@
+require "./module/common"
 require "./module/rental"
 
 class Book
@@ -5,7 +6,7 @@ class Book
   attr_reader :id
 
   def initialize(title, author, id = nil)
-    @id = Random.rand(1..100)
+    @id = Common.next_id
     @title = title
     @author = author
     @rentals = []

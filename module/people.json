@@ -1,20 +1,33 @@
 [
   {
-    "id" : 74,
+    "id" : 1,
     "age" : 34,
     "name" : "Kiahara",
     "parent_permission" : true
   },
   {
-    "id" : 95,
+    "id" : 2,
     "age" : 23,
     "name" : "Sam",
     "parent_permission" : true
   },
   {
-    "id" : 26,
+    "id" : 3,
     "age" : 25,
     "name" : "jeremy",
     "parent_permission" : true
+  },
+  {
+    "id" : 4,
+    "age" : 0,
+    "name" : "Duke",
+    "parent_permission" : true
+  },
+  {
+    "id" : 19,
+    "age" : 34,
+    "name" : "Vicky",
+    "specialization" : "Maths",
+    "parent_permission" : false
   }
 ]
