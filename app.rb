@@ -7,6 +7,8 @@ require './module/teacher'
 require 'json'
 require './module/assets/intro_txt'
 require 'date'
+#rubocop:disable Metrics/CyclomaticComplexity, Metrics/MethodLength, Metrics/PerceivedComplexity
+def load_data
 
 class App
   attr_reader :people, :books, :rentals
