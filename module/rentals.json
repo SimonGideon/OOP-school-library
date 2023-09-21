@@ -1,31 +1,16 @@
 [
   {
     "id" : 3,
-    "date" : "2020-09-08",
+    "date" : "2023-09-29",
     "book" : {
       "id" : 2,
-      "title" : "Ruthles Driver",
-      "author" : "Mercy Nelly"
+      "title" : "CLean Code",
+      "author" : "Robert Martin"
     },
     "person" : {
       "id" : 1,
       "age" : 23,
-      "name" : "Ruth",
-      "parent_permission" : true
-    }
-  },
-  {
-    "id" : 4,
-    "date" : "2020-09-08",
-    "book" : {
-      "id" : 2,
-      "title" : "Ruthles Driver",
-      "author" : "Mercy Nelly"
-    },
-    "person" : {
-      "id" : 1,
-      "age" : 23,
-      "name" : "Ruth",
+      "name" : "Simon Gideon",
       "parent_permission" : true
     }
   }

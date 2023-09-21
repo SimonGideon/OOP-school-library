@@ -1,12 +1,12 @@
-require "./module/common"
-require "./module/book"
-require "./person"
+require './module/common'
+require './module/book'
+require './person'
 
 class Rental
   attr_accessor :date
   attr_reader :book, :person
 
-  def initialize(date, book, person, id = nil)
+  def initialize(date, book, person, _id = nil)
     @id = Common.next_id
     @date = date
     @book = book
@@ -31,7 +31,7 @@ class Rental
       id: @id,
       date: date,
       book: @book.to_hash,
-      person: @person.to_hash,
+      person: @person.to_hash
     }
   end
 end

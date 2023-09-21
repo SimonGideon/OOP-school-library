@@ -1,11 +1,11 @@
-require "./module/common"
-require "./module/rental"
+require './module/common'
+require './module/rental'
 
 class Book
   attr_accessor :title, :author, :rental
   attr_reader :id
 
-  def initialize(title, author, id = nil)
+  def initialize(title, author, _id = nil)
     @id = Common.next_id
     @title = title
     @author = author
@@ -21,7 +21,7 @@ class Book
     {
       id: id,
       title: title,
-      author: author,
+      author: author
     }
   end
 end

@@ -1,13 +1,13 @@
-require "./module/nameable"
-require "./module/common"
-require "./module/rental"
+require './module/nameable'
+require './module/common'
+require './module/rental'
 
 class Person < Nameable
   attr_accessor :name, :age, :rentals, :book, :date
   attr_reader :id
 
   # rubocop:disable Style/OptionalBooleanParameter
-  def initialize(age, name = "Unknown", parent_permission = true, id = nil)
+  def initialize(age, name = 'Unknown', parent_permission = true, _id = nil)
     super()
     @id = Common.next_id
     @name = name

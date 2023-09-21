@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
-require "./app"
-require "date"
-require "./module/assets/intro_txt"
+require './app'
+require 'date'
+require './module/assets/intro_txt'
 
 # base class
 class Main
@@ -22,21 +22,21 @@ class Main
         @my_app.save_data
         break
       elsif option > 7 || option < 1
-        puts "Invalid option"
+        puts 'Invalid option'
       end
     end
     exits
   end
 
   def display_options
-    puts "Please choose an option: "
-    puts "1 - List all books"
-    puts "2 - List all people"
-    puts "3 - Create a person"
-    puts "4 - Create a book"
-    puts "5 - Create a rental"
-    puts "6 - List all rentals for a given person id"
-    puts "7 - Exit"
+    puts 'Please choose an option: '
+    puts '1 - List all books'
+    puts '2 - List all people'
+    puts '3 - Create a person'
+    puts '4 - Create a book'
+    puts '5 - Create a rental'
+    puts '6 - List all rentals for a given person id'
+    puts '7 - Exit'
   end
 
   def handle_option(option)
