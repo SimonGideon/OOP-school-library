@@ -30,16 +30,24 @@ class App
 
     @people = JSON.parse(people_data).map do |person|
       if person.key?("specialization")
-        Teacher.new(person["name"], person["age"], person["specialization"], person["parent_permission"], person["id"])
+        Teacher.new(person["name"], person["age"], person["specialization"], person["parent_permission"], person["id"].to_i)
       else
-        Student.new(person["age"], person["name"], person["parent_permission"], person["id"])
+        Student.new(person["age"], person["name"], person["parent_permission"], person["id"].to_i)
       end
     end
     @books = JSON.parse(books_data).map do |book|
       Book.new(book["title"], book["author"], book["id"])
     end
-    @rentals = JSON.parse(rentals_data).map do |rental|
-      Rental.new(rental["date"], rental["book"], rental["person"], rental["id"])
+    @rentals = JSON.parse(rentals_data).map do |rental_data|
+      # Parse the book data and find the corresponding book object
+      book_id = rental_data["book"]["id"].to_i
+      book = @books.find { |b| b.id == book_id }
+
+      # Parse the person data and find the corresponding person object
+      person_id = rental_data["person"]["id"].to_i
+      person = @people.find { |p| p.id == person_id }
+
+      Rental.new(rental_data["date"], book, person, rental_data["id"].to_i)
     end
   end
 
@@ -92,18 +100,28 @@ class App
     puts @books[0].title
   end
 
-  def create_rental(book_index, person_index, d_date)
-    book = @books[book_index]
-    person = @people[person_index]
-    date = d_date
-    @rentals << Rental.new(date, book, person)
-    puts "Rental Created."
+  def create_rental(book_id, person_id, d_date)
+    # Find the book and person by their IDs
+    book = @books.find { |b| b.id == book_id }
+    person = @people.find { |p| p.id == person_id }
+
+    # Check if both book and person were found
+    if book.nil? || person.nil?
+      puts "Invalid book or person ID. Rental not created."
+      return
+    else
+      date = d_date
+      @rentals << Rental.new(date, book, person)
+      puts "Rental Created."
+      puts book.title
+      puts person.name
+    end
   end
 
   def list_rentals(_id)
     puts "Rentals:"
     @rentals.each do |rental|
-      if rental.person.id == person_id
+      if rental.person.id == _id
         puts "Date: #{rental.date}, Book '#{rental.book.title}' By #{rental.person.name} "
       end
     end
@@ -117,9 +135,9 @@ class App
     @people.each_with_index do |person, index|
       case person
       when Student
-        puts "#{index}) [Student] Name: #{person.name}, ID: #{person.id}, Age: #{person.age}"
+        puts "#{index}.) [Student] Name: #{person.name}, ID: #{person.id}, Age: #{person.age}"
       when Teacher
-        puts "#{index}) [Teacher] Name: #{person.name}, ID: #{person.id}, Age: #{person.age}"
+        puts "#{index}.) [Teacher] Name: #{person.name}, ID: #{person.id}, Age: #{person.age}"
       end
     end
   end
@@ -224,14 +242,14 @@ class Rentals
   def handle_create_rental
     @my_app.gets_book
     @my_app.gets_person
-    puts "Enter book index:"
-    book_index = gets.chomp.to_i
-    puts "Enter person Index:"
-    person_index = gets.chomp.to_i
+    puts "Enter book ID:"
+    book_id = gets.chomp.to_i
+    puts "Enter person ID:"
+    person_id = gets.chomp.to_i
     puts "Enter date(YYYY-MM-DD): "
     date_input = gets.chomp
     date = Date.parse(date_input)
-    @my_app.create_rental(book_index, person_index, date)
+    @my_app.create_rental(book_id, person_id, date)
   end
 
   def handle_list_rentals
