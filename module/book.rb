@@ -1,8 +1,12 @@
+require './module/common'
 require './module/rental'
-class Book
-  attr_accessor :title, :author, :rentals
 
-  def initialize(title, author)
+class Book
+  attr_accessor :title, :author, :rental
+  attr_reader :id
+
+  def initialize(title, author, _id = nil)
+    @id = Common.next_id
     @title = title
     @author = author
     @rentals = []
@@ -15,6 +19,7 @@ class Book
   # hashing
   def to_hash
     {
+      id: id,
       title: title,
       author: author
     }

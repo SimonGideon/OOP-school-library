@@ -6,8 +6,8 @@ class Student < Person
   attr_reader :parent_permission
 
   # rubocop:disable Style/OptionalBooleanParameter
-  def initialize(age, name = 'Unkown', parent_permission = true)
-    super(age, name, parent_permission)
+  def initialize(age, name = 'Unkown', parent_permission = true, id = nil)
+    super(age, name, parent_permission, id)
     @classroom = classroom
   end
 

@@ -1,0 +1,17 @@
+[
+  {
+    "id" : 3,
+    "date" : "2023-09-29",
+    "book" : {
+      "id" : 2,
+      "title" : "CLean Code",
+      "author" : "Robert Martin"
+    },
+    "person" : {
+      "id" : 1,
+      "age" : 23,
+      "name" : "Simon Gideon",
+      "parent_permission" : true
+    }
+  }
+]

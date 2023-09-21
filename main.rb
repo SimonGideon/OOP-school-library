@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby
 require './app'
 require 'date'
+require './module/assets/intro_txt'
 
 # base class
 class Main
@@ -12,7 +13,7 @@ class Main
   end
 
   def run
-    puts 'Welcome to our app'
+    intro
     loop do
       display_options
       option = gets.chomp.to_i
@@ -20,11 +21,11 @@ class Main
       if option == 7
         @my_app.save_data
         break
-      else
+      elsif option > 7 || option < 1
         puts 'Invalid option'
       end
     end
-    puts 'Exiting......'
+    exits
   end
 
   def display_options
