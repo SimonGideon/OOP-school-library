@@ -59,7 +59,7 @@ After you're finished please remove all the comments and instructions!
 
 > Describe your project in 1 or 2 sentences.
 
-In this project, you will start building your school library app. In this initial step, you will implement the classes to represent students and teachers.
+In this project, you will start building your school library app - Book Rental Module, you can add a student or teacher who can rent a book.
 
 ## 🛠 Built With <a name="built-with"></a>
 
@@ -77,11 +77,9 @@ In this project, you will start building your school library app. In this initia
 
 ### Key Features <a name="key-features"></a>
 
-> Describe between 1-3 key features of the application.
-
-- **Add UI**
-- **Add more methods**
-- **Emphasize on inheritance**
+- **Create and List Students**
+- **Create and List Teachers**
+- **Initiate Books Rentals**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -113,12 +111,8 @@ Install this project with(Ubuntu):
 
 To run the project, execute the following command:
 
-
-```sh
-  irb school_library.rb
-  irb modules/teacher.rb
-  irb modules/student.rb
-  
+```irb
+ruby main.rb  
 ```
 
 ### Run tests
@@ -133,17 +127,10 @@ Example command:
 ```
 --->
 
-### Deployment
+### Live Demo
 
-You can deploy this project using:
+[Screencast from 21-09-23 03:17:52 PM EAT.webm](https://github.com/SimonGideon/OOP-school-library/assets/61404403/00ad9da9-398d-4daf-8533-3fd2fd252dff)
 
-<!--
-Example:
-
-```sh
-
-```
- -->
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
