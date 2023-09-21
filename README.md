@@ -111,7 +111,7 @@ Install this project with(Ubuntu):
 
 To run the project, execute the following command:
 
-```irb
+```sh
 ruby main.rb  
 ```
 
@@ -140,7 +140,7 @@ Example command:
 
 - GitHub: [@SimonGideon](https://github.com/SimonGideon)
 - Twitter: [@Simo_Giddy](https://twitter.com/Simo_Giddy)
-- LinkedIn: [mnayi-gideon](https://linkedin.com/in/mnayi-gideon)
+- LinkedIn: [mnayi-gideon](https://www.linkedin.com/in/simon-gideon/)
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -151,7 +151,7 @@ Example command:
 
 > Describe 1 - 3 features you will add to the project.
 
-- [ ] **Break down classes into**
+- [ ] **Break down classes validations**
 - [ ] **Implement a UI on the same**
 - [ ] **Link it to a database**
 
